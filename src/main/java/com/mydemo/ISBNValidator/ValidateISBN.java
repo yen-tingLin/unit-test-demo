@@ -14,11 +14,9 @@ public class ValidateISBN {
 			throw new NumberFormatException("ISBN must be 10 digits");
 		}
 		if(!input.matches("[0-9]+")) {
-			if(input.matches("[0-9]+X")) {
-				
-			} else {
+			if(!input.matches("[0-9]+X")) {
 				throw new NumberFormatException("last word of ISBN can only be digit or 'X'");
-			}			
+			} 		
 		}
 		
 		int sum = 0;		
@@ -28,17 +26,16 @@ public class ValidateISBN {
 		}
 		
 		int remainder = sum % 11;
+		// 檢查碼，初始值為整除的狀況
 		int check = 0;
-		if(remainder == 0) {
-			check = 0;
-		} else {
+		if(remainder != 0) {
 			check = 11 - remainder;
 		}
 		
 		// or Character.getNumericValue(input.charAt(size-1))
-		if(check == (input.charAt(size-1)-'0')) {
+		if((check == 10 && input.charAt(size-1) == 'X')) {
 			return true;
-		} else if(check == 10 && input.charAt(size-1) == 'X') {
+		} else if(check == (input.charAt(size-1)-'0')) {
 			return true;
 		}
 		return false;
