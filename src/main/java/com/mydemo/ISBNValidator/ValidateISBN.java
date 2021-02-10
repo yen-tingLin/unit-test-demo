@@ -7,7 +7,7 @@ public class ValidateISBN {
 
 	public boolean checkISBN(String input) {
 		int size = input.length();
-		// check input by format
+		// 檢查 input 的格式
 		if(size != _10_UNIT_LONG) {
 			throw new NumberFormatException("ISBN must be 10 words");
 		}
@@ -37,6 +37,7 @@ public class ValidateISBN {
 			check = 11 - remainder;
 		}
 		
+		// 確認檢查碼 (int check) 是否和最後一位的數字相同；若檢查碼為 10，最後一位須為 X
 		// or Character.getNumericValue(input.charAt(size-1))
 		if((check == 10 && input.charAt(size-1) == 'X') || check == (input.charAt(size-1)-'0')) {
 			return true;
