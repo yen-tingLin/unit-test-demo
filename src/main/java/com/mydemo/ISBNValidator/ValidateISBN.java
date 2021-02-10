@@ -4,11 +4,6 @@ package com.mydemo.ISBNValidator;
 public class ValidateISBN {
 	
 	private static final int _10_UNIT_LONG = 10;
-	
-	public static void main(String[] args) {
-		String t = "012000030X";
-		System.out.println(t.matches("[0-9]+X"));
-	}
 
 	public boolean checkISBN(String input) {
 		int size = input.length();
@@ -43,11 +38,9 @@ public class ValidateISBN {
 		}
 		
 		// or Character.getNumericValue(input.charAt(size-1))
-		if((check == 10 && input.charAt(size-1) == 'X')) {
+		if((check == 10 && input.charAt(size-1) == 'X') || check == (input.charAt(size-1)-'0')) {
 			return true;
-		} else if(check == (input.charAt(size-1)-'0')) {
-			return true;
-		}
+		} 
 		return false;		
 	}
 
