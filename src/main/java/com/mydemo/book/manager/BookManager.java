@@ -6,10 +6,15 @@ import com.mydemo.book.fakeservice.ExternalBookDataService;
 
 public class BookManager {
 	
-	private ExternalBookDataService externalService;
+	private ExternalBookDataService webService;
+	private ExternalBookDataService databaseService;
 	
 	public String createInventoryCode(String isbn) {
-		Book newBook = externalService.getBook(isbn);
+		Book newBook = databaseService.getBook(isbn);
+		if(newBook == null) {
+			newBook = webService.getBook(isbn);
+		}
+		
 		if(newBook.getInventoryCode() != null) {
 			return newBook.getInventoryCode();
 		}
@@ -24,13 +29,20 @@ public class BookManager {
 		return inventoryCode.toString();
 	}
 
-
-	public ExternalBookDataService getExternalService() {
-		return externalService;
+	public ExternalBookDataService getWebService() {
+		return webService;
 	}
 
-	public void setExternalService(ExternalBookDataService externalService) {
-		this.externalService = externalService;
+	public void setWebService(ExternalBookDataService webService) {
+		this.webService = webService;
+	}
+
+	public ExternalBookDataService getDatabaseService() {
+		return databaseService;
+	}
+
+	public void setDatabaseService(ExternalBookDataService databaseService) {
+		this.databaseService = databaseService;
 	}
 
 }
