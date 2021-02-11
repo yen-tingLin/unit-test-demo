@@ -1,6 +1,7 @@
-package com.mydemo.ISBNValidator;
+package com.mydemo.book.isbnvalidator;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 

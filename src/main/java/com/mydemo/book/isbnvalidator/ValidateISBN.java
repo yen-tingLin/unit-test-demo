@@ -1,4 +1,4 @@
-package com.mydemo.ISBNValidator;
+package com.mydemo.book.isbnvalidator;
 
 
 public class ValidateISBN {
